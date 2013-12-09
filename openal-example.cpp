@@ -16,7 +16,7 @@ int main(int argc, char **argv)
 {
 	ALboolean enumeration;
 	const ALCchar *devices;
-	const ALCchar *defaultDeviceName = argv[1];
+	const ALCchar *defaultDeviceName;
 	int ret;
 	char *bufferData;
 	ALCdevice *device;
@@ -30,8 +30,7 @@ int main(int argc, char **argv)
 	ALint source_state;
 
 
-	if (!defaultDeviceName)
-		defaultDeviceName = alcGetString(NULL, ALC_DEFAULT_DEVICE_SPECIFIER);
+	defaultDeviceName = alcGetString(NULL, ALC_DEFAULT_DEVICE_SPECIFIER);
 
 	device = alcOpenDevice(defaultDeviceName);
 	if (!device) {

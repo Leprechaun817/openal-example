@@ -1,15 +1,24 @@
-objects := openal-example.o Wav.o
-libs := -lopenal
+# Entry point for physicsTesting makefiles
+# Based loosely off FreeImage makefiles - thanks, doods
+# Default to 'make -f Makefile.unix' for Linux and for unknown OS. 
+#
+OS = $(shell uname -s)
+MAKEFILE = unix
 
-all: openal-example
+ifneq (,$(findstring MINGW,$(OS)))
+    MAKEFILE = mingw
+	SHELL = C:/Windows/System32/cmd.exe
+endif
 
-openal-example: $(objects)
-	g++ -o $@ $^ $(libs)
+all : default oggstreaming
 
-%.o: %.cpp
-	g++ -c -MMD -o $@ $<
+default:
+	$(MAKE) -f Makefile.$(MAKEFILE) 
 
--include $(objects:.o=.d)
+oggstreaming:
+	cd ogg-streaming && $(MAKE) -f Makefile.$(MAKEFILE)
 
 clean:
-	rm -f *.o *.d openal-example
+	$(MAKE) -f Makefile.$(MAKEFILE) clean 
+	cd ogg-streaming && $(MAKE) -f Makefile.$(MAKEFILE) clean 
+	

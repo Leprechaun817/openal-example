@@ -2,7 +2,7 @@ CC = g++
 
 TARGET = oggplayer
 
-COMPILEFLAGS = -lopenal -lalut -logg -lvorbis -lvorbisfile
+COMPILEFLAGS = -lopenal -logg -lvorbis -lvorbisfile
 
 $(TARGET): main.o ogg.o
 	$(CC) -o $(TARGET) main.o ogg.o $(COMPILEFLAGS)
@@ -15,4 +15,3 @@ ogg.o: ogg.h ogg.cpp
 
 clean:
 	rm -f $(TARGET) main.o ogg.o
-

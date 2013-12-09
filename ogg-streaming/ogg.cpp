@@ -127,8 +127,11 @@ bool ogg_stream::update()
 
         active = stream(buffer);
 
-        alSourceQueueBuffers(source, 1, &buffer);
-        check();
+		if(active)
+		{
+			alSourceQueueBuffers(source, 1, &buffer);
+			check();
+		}
     }
 
     return active;

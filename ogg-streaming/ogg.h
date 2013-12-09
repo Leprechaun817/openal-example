@@ -6,7 +6,7 @@
 using namespace std;
 
 #include <AL/al.h>
-#include <AL/alut.h>
+#include <AL/alc.h>
 #include <ogg/ogg.h>
 #include <vorbis/vorbisfile.h>
 

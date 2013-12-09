@@ -2,5 +2,6 @@
 *.d
 openal-example
 oggplayer
+*.exe
 *.wav
 *.ogg

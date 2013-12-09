@@ -1,0 +1,16 @@
+SHELL=C:/Windows/System32/cmd.exe
+objects := openal-example.o Wav.o
+libs := ./lib/libOpenAL32.dll.a
+
+all: openal-example
+
+openal-example: $(objects)
+	g++ -o $@ $^ $(libs)
+
+%.o: %.cpp
+	g++ -c -MMD -o $@ $<
+
+-include $(objects:.o=.d)
+
+clean:
+	rm -f *.o *.d openal-example.exe

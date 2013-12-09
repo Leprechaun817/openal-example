@@ -1,0 +1,20 @@
+SHELL=C:/Windows/System32/cmd.exe
+CC = g++
+
+TARGET = oggplayer.exe
+
+COMPILEFLAGS = -I../include 
+LINKFLAGS = -L../lib -lOpenAL32.dll -lvorbis -logg 
+
+$(TARGET): main.o ogg.o
+	$(CC) -o $(TARGET) main.o ogg.o $(LINKFLAGS)
+
+main.o: main.cpp
+	$(CC) -c main.cpp -Wno-deprecated $(COMPILEFLAGS)
+
+ogg.o: ogg.h ogg.cpp
+	$(CC) -c ogg.cpp -Wno-deprecated $(COMPILEFLAGS)
+
+clean:
+	rm -f $(TARGET) main.o ogg.o
+
